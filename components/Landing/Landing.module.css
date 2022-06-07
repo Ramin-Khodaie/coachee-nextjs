@@ -114,6 +114,7 @@ background: linear-gradient(90deg, rgba(1,28,107,1) 100%, rgba(244,243,198,1) 10
     height: 100px;
     line-height: 0.5;
     border: 2px dotted rgb(1,28,107);
+    
     /* background-color: red; */
 }
 
