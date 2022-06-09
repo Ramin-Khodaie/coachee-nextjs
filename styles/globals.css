@@ -21,3 +21,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root{
+  --primary:rgb(1,28,107)
+}

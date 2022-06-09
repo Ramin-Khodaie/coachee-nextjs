@@ -4,7 +4,7 @@
   padding: 20px;
   width: 400px;
   background-color: whitesmoke;
-  border: 1px solid rgba(1,28,107,1);
+  border: 1px solid rgba(1, 28, 107, 1);
   border-radius: 15px;
   min-height: 500px;
   display: flex;
@@ -33,10 +33,16 @@
   background-color: #e1f1f6;
 }
 
+.input_container > input::placeholder {
+  font-size: 12px;
+}
+
 .radio_container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .radio_container > label > input {
@@ -100,32 +106,51 @@
   font-family: inherit;
   font-weight: 600;
   align-self: center;
-  background: rgb(1,28,107);
-background: linear-gradient(90deg, rgba(1,28,107,1) 100%, rgba(244,243,198,1) 100%);
+  background: var(--primary);
+  /* background: linear-gradient(90deg, rgba(1,28,107,1) 100%, rgba(244,243,198,1) 100%); */
   /* background: rgb(63,94,251);
   background: radial-gradient(circle, rgba(63,94,251,1) 97%, rgba(134,70,252,1) 100%); */
 }
 
-.uploadfield{
-    text-align: center;
-    padding: auto;
-    /* cursor: pointer; */
-    width: 100%;
-    height: 100px;
-    line-height: 0.5;
-    border: 2px dotted rgb(1,28,107);
-    
-    /* background-color: red; */
+.uploadfield {
+  text-align: center;
+  padding: auto;
+  /* cursor: pointer; */
+  width: 100%;
+  height: 100px;
+  line-height: 0.5;
+  /* border: 2px dotted rgb(1,28,107); */
+
+  /* background-color: red; */
 }
 
-.uploadfield >span{
-    color: rgb(63,94,251);;
-    font-size: 16px;
-
+.uploadfield > span {
+  color: rgb(63, 94, 251);
+  font-size: 16px;
 }
 
-.uploadfield > span:hover{
-    border-bottom: 2px dotted black;
-    cursor: pointer;
+.uploadfield > span:hover {
+  border-bottom: 2px dotted black;
+  cursor: pointer;
 }
 
+.uploadbtn {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  color: black !important;
+  margin-top: 10px !important;
+  margin-bottom: 5px;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: 10;
+}
+.preview_item {
+  margin: 15;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+.preview_item:hover {
+  border: 2px solid gray;
+}
