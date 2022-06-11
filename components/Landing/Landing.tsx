@@ -84,7 +84,7 @@ const Landing = () => {
     localStorage.setItem("resume", "ok")
     console.log(4466, state);
 
-    // dispatch(uploadResume(state))
+    dispatch(uploadResume(state))
   };
 
   const handleInputRef = (e: any) => {
