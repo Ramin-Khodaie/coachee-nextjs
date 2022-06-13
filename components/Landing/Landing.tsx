@@ -1,53 +1,36 @@
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { useState, useRef, useCallback } from "react";
-import { INewResume } from "../../redux/Reducers/coacheSlice";
 import { useDropzone } from "react-dropzone";
-import { useAppDispatch } from "../../redux/hook";
-import { uploadResume } from "../../redux/Reducers/coacheSlice";
 
 import styles from "./Landing.module.css";
 import MimeIconType from "../MimeIconType/MimeIconType";
+import useNotify from "../../context/notify/useNotify";
 
+interface IAvailableOn {
+  telegram: boolean;
+  whatsapp: boolean;
+}
+
+export interface INewResume {
+  name: string;
+  phonenumber: string;
+  availbleOn: IAvailableOn;
+  resume: File[];
+  email: string;
+  status: string;
+}
 const Landing = () => {
   const [state, setState] = useState<INewResume>({
     name: "",
     phonenumber: "",
     availbleOn: { telegram: false, whatsapp: false },
-    resume: "",
+    resume: [],
     email: "",
     status: "status 1",
   });
 
-  // const [previewFile, setPreviewFiles] = useState<any>([]);
-
-  const dispatch = useAppDispatch();
-
-  // function collectFiles(files: any[]) {
-  //   const showFiles = [];
-  //   const actFiles = [];
-
-  //   for (let i = 0; i < files.length; i++) {
-  //     const file = files[i];
-  //     const d = URL.createObjectURL(file);
-  //     const showFile = { preview: d, type: file.type };
-  //     showFiles.push(showFile);
-  //     actFiles.push(file);
-  //   }
-
-  //   //setstate({...state})
-  //   setPreviewFiles(showFiles);
-  //   console.log(888, state)
-  //   setState({ ...state, resume: actFiles });
-  // }
-
-  // const onDrop = useCallback((acceptedFiles: any) => {
-  //   console.log(234, state)
-  //   collectFiles(acceptedFiles);
-  // }, []);
-
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const notify = useNotify();
   //handle change for inputs
   const handleChangeInput = (e: any) => {
     const { name, value } = e.target;
@@ -71,7 +54,7 @@ const Landing = () => {
       return;
     }
     if (name === "resume") {
-      setState({ ...state, [name]: e.target.files[0] });
+      setState({ ...state, [name]: URL.createObjectURL(e.target.files[0]) });
       // setPreviewFiles([e.target.files]);
       return;
     }
@@ -81,10 +64,16 @@ const Landing = () => {
   //submit the filled form to backend
   const doSubmit = (e: any) => {
     e.preventDefault();
-    localStorage.setItem("resume", "ok")
     console.log(4466, state);
-
-    dispatch(uploadResume(state))
+    notify("resume upload successfuly")
+    setState({
+      name: "",
+      availbleOn: { telegram: false, whatsapp: false },
+      email: "",
+      phonenumber: "",
+      resume: [],
+      status: "",
+    });
   };
 
   const handleInputRef = (e: any) => {
@@ -197,7 +186,8 @@ const Landing = () => {
             </div>
           ))}
         </div> */}
-        <button type="submit">Submit</button>
+        
+        <button disabled={state.email !== "" ? false : true} type="submit">Submit</button>
       </form>
     </div>
   );
